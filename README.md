@@ -5,18 +5,18 @@ University of Michigan to work on their app MThrift.
 ## Quick Start
 
 First, clone the repository:
-```console
+```bash
 $ git clone https://github.com/void-tech-um/mthrift.git # HTTPS
 $ git clone git@github.com:void-tech-um/mthrift.git # SSH
 ```
 
 Then, cd into the directory and install the dependencies:
-```console
+```bash
 $ cd mthrift
 $ npm ci
 ```
 
 Finally, run the app:
-```console
+```bash
 $ npm start
 ```
