@@ -1,4 +1,7 @@
-on: [pull_request]
+on:
+  pull_request:
+    branches: [main]
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -10,7 +13,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
-          cache: npm
+          cache: yarn
 
       - name: 🏗 Setup Expo
         uses: expo/expo-github-action@v7
@@ -19,7 +22,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 📦 Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: 🚀 Publish preview
         run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
