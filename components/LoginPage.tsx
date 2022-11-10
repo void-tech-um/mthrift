@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import LoginError from './loginError';
+import LoginError from './LoginError';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
-const LoginPage = () => {
+const LoginPage = ({navigation}) => {
     const [usernameEntered, setUsernameEntered] = useState("");
     const [passwordEntered, setPasswordEntered] = useState("");
     const [errorCheck, setErrorCheck] = useState(false);
@@ -63,6 +63,9 @@ const LoginPage = () => {
                     onPress={onPress}
                     >
                     <Text>Press Here</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                    <Text>Don't have an account?</Text>
                 </TouchableOpacity>
         </View>
     );

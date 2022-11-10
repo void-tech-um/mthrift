@@ -5,10 +5,10 @@ import {
   View,
   TextInput,
   Touchable,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native";
 
-const SignUp = () => {
+const SignUp = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -42,6 +42,9 @@ const SignUp = () => {
       />
       <TouchableOpacity onPress={handleSignUp}>
         <Text>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text>Already have an account?</Text>
       </TouchableOpacity>
     </View>
   );
