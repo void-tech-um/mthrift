@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import React, { } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 const LoginError = (props) => {
     if(props.errorCheck === true){
         return (
