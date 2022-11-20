@@ -15,7 +15,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
    //and passwords
    const onPress = () => {
       if (usernameEntered === "" || passwordEntered === "") {
-         console.log("Username is empty");
+         console.log("Username or password is emptey");
          setErrorCheck(true);
          setTimeout(() => {
             setErrorCheck(false);
