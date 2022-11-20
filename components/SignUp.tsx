@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity
-} from "react-native";
+import { Text, View, TextInput, TouchableOpacity } from "react-native";
 
-const SignUp = ({navigation}) => {
+interface SignUpProps {
+  navigation: any;
+}
+
+const SignUp = ({ navigation }: SignUpProps) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -41,7 +40,7 @@ const SignUp = ({navigation}) => {
       <TouchableOpacity onPress={handleSignUp}>
         <Text>Sign Up</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
         <Text>Already have an account?</Text>
       </TouchableOpacity>
     </View>
