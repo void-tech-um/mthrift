@@ -2,8 +2,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Text, View } from "react-native";
 import SecureStore from "expo-secure-store";
 
-import Authenticate from "./components/Authenticate";
-import AppNav from "./components/AppNav";
+import Authenticate from "./navigation/Authenticate";
+import AppNav from "./navigation/AppNav";
 import React from "react";
 import axios from "axios";
 
