@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 
+/* Placeholders for the screens */
 const Home = () => {
   return <Text>Home</Text>;
 };
@@ -12,10 +13,11 @@ const Chat = () => {
 const Profile = () => {
   return <Text>Profile</Text>;
 };
+/* end placeholders */
 
 const Tab = createBottomTabNavigator();
 
-function HomeNav() {
+function AppNav() {
   return (
     <Tab.Navigator initialRouteName="Authenticate">
       <Tab.Screen name="Home" component={Home} />
@@ -25,4 +27,4 @@ function HomeNav() {
   );
 }
 
-export default HomeNav;
+export default AppNav;

@@ -1,36 +1,46 @@
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Button, Text, TextInput, View, StyleSheet } from 'react-native';
-import SecureStorage, { ACCESS_CONTROL, ACCESSIBLE, AUTHENTICATION_TYPE } from 'react-native-secure-storage'
+import { NavigationContainer } from "@react-navigation/native";
+import { Text, View } from "react-native";
+import SecureStore from "expo-secure-store";
 
 import Authenticate from "./components/Authenticate";
-import HomeNav from "./components/LoggedIn";
-import SignUp from "./components/SignUp";
-import React from 'react'
-import axios from 'axios'
+import AppNav from "./components/AppNav";
+import React from "react";
+import axios from "axios";
 
-const AuthContext = React.createContext();
-const Stack = createStackNavigator();
+interface IAuthContext {
+  signIn: (data: any) => Promise<void>;
+  signOut: () => void;
+  signUp: (data: any) => Promise<void>;
+}
+
+const AuthContext = React.createContext<IAuthContext>(null!);
+
+function SplashScreen() {
+  return (
+    // Center the content
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Loading...</Text>
+    </View>
+  );
+}
 
 export default function App() {
   const [state, dispatch] = React.useReducer(
     (prevState: any, action: any): any => {
       switch (action.type) {
-        case 'RESTORE_TOKEN':
+        case "RESTORE_TOKEN":
           return {
             ...prevState,
             userToken: action.token,
             isLoading: false,
           };
-        case 'SIGN_IN':
+        case "SIGN_IN":
           return {
             ...prevState,
             isSignout: false,
             userToken: action.token,
           };
-        case 'SIGN_OUT':
+        case "SIGN_OUT":
           return {
             ...prevState,
             isSignout: true,
@@ -48,22 +58,18 @@ export default function App() {
   React.useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
-      let userToken;
+      try {
+        const userToken = await SecureStore.getItemAsync("token");
+        console.log("token", userToken);
+        // TODO: Check if token is valid by making a request to the server and if it is not valid, delete the token from the secure store
 
-      let result = await SecureStore?.getItemAsync(key);
-      
-      if (result) {
-        userToken = result
-        console.log(userToken)
-      } else {
-        alert('No values stored under that key.');
+        // Set the token in the axios header, so all are future requests will have the token
+        axios.defaults.headers.common["Authorization"] = `Bearer ${userToken}`;
+        // Change the state to restore the token and set the loading to false
+        dispatch({ type: "RESTORE_TOKEN", token: userToken });
+      } catch (e) {
+        console.log("invalid token", e);
       }
-
-      // After restoring token, we may need to validate it in production apps
-
-      // This will switch to the App screen or Auth screen and this loading
-      // screen will be unmounted and thrown away.
-      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
     };
 
     bootstrapAsync();
@@ -72,38 +78,37 @@ export default function App() {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data: any) => {
-        // In a production app, we need to send some data (usually username, password) to server and get a token
-        // We will also need to handle errors if sign in failed
-        // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
-        // In the example, we'll use a dummy token
-        const res: any = await axios({
-          method: 'post',
-          url: data.url,
-          data: {
-            userName: data.username,
-            password: data.password
-          }
-        });
-
-        dispatch({ type: 'SIGN_IN', token: res.token });
+        // Make a request to the server to sign in the user
+        // Get the token from the response
+        // Save the token in the secure store and in the axios header
+        // Change the state to indicate the user is signed in
+        try {
+          const response = await axios.post("FIX_ME", data);
+          const { token } = response.data;
+          await SecureStore.setItemAsync("token", token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          dispatch({ type: "SIGN_IN", token });
+        } catch (e) {
+          // TODO: Handle error
+          console.log(e);
+        }
       },
-      signOut: () => dispatch({ type: 'SIGN_OUT' }),
+      signOut: () => dispatch({ type: "SIGN_OUT" }),
       signUp: async (data: any) => {
-        const res: any = await axios({
-          method: 'post',
-          url: data.url,
-          data: {
-            email: data.email,
-            username: data.username,
-            password: data.password
-          }
-        })
-        // In a production app, we need to send user data to server and get a token
-        // We will also need to handle errors if sign up failed
-        // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
-        // In the example, we'll use a dummy token
-
-        dispatch({ type: 'SIGN_UP', token: res.token });
+        // Make a request to the server to sign up the user
+        // Get the token from the response
+        // Save the token in the secure store and in the axios header
+        // Change the state to indicate the user is signed in
+        try {
+          const response = await axios.post("FIX_ME", data);
+          const { token } = response.data;
+          await SecureStore.setItemAsync("token", token);
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          dispatch({ type: "SIGN_IN", token });
+        } catch (e) {
+          // TODO: Handle error
+          console.log(e);
+        }
       },
     }),
     []
@@ -111,37 +116,19 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        <Stack.Navigator>
-          {state.isLoading ? (
-            // We haven't finished checking for the token yet
-            <Stack.Screen name="Splash" component={SplashScreen} />
-          ) : state.userToken == null ? (
+      {state.isLoading ? (
+        <SplashScreen />
+      ) : (
+        <NavigationContainer>
+          {state.userToken == null ? (
             // No token found, user isn't signed in
-            <Stack.Screen
-              name="SignIn"
-              component={SignUp}
-              options={{
-                title: 'Sign in',
-                // When logging out, a pop animation feels intuitive
-                animationTypeForReplace: state.isSignout ? 'pop' : 'push',
-              }}
-            />
+            <Authenticate />
           ) : (
             // User is signed in
-            <Stack.Screen name="Home" component={Authenticate} />
+            <AppNav />
           )}
-        </Stack.Navigator>
-      </NavigationContainer>
+        </NavigationContainer>
+      )}
     </AuthContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
