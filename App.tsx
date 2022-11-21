@@ -69,6 +69,7 @@ export default function App() {
         dispatch({ type: "RESTORE_TOKEN", token: userToken });
       } catch (e) {
         console.log("invalid token", e);
+        dispatch({ type: "RESTORE_TOKEN", token: null });
       }
     };
 
