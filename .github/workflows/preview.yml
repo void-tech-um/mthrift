@@ -22,6 +22,9 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
+      - name: 🏗 Build
+        run: npm run build
+
       - name: 🚀 Publish preview
         run: expo publish --release-channel=pr-${{ github.event.number }} --non-interactive
 

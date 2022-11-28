@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import LoginError from "./LoginError";
+import LoginError from "../components/LoginError";
 import {
   StyleSheet,
   Text,
@@ -20,22 +20,15 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   //button to eventually do validation check with database, to see if user exists (validate with emails
   //and passwords
   const onPress = () => {
-    if (usernameEntered === "") {
-      console.log("Username is empty");
+    if (usernameEntered === "" || passwordEntered === "") {
+      console.log("Username or password is emptey");
       setErrorCheck(true);
       setTimeout(() => {
         setErrorCheck(false);
       }, 2500);
     } else {
+      // we have username and password, login
       console.log("Username: " + usernameEntered);
-    }
-    if (passwordEntered === "") {
-      console.log("Password is empty");
-      setErrorCheck(true);
-      setTimeout(() => {
-        setErrorCheck(false);
-      }, 2500);
-    } else {
       console.log("Password: " + passwordEntered);
     }
   };

@@ -5,7 +5,7 @@ interface SignUpProps {
   navigation: any;
 }
 
-const SignUp = ({ navigation }: SignUpProps) => {
+const SignUpPage = ({ navigation }: SignUpProps) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -46,4 +46,4 @@ const SignUp = ({ navigation }: SignUpProps) => {
     </View>
   );
 };
-export default SignUp;
+export default SignUpPage;
