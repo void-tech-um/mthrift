@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
+import ProfilePage from "../screens/ProfilePage";
 
 /* Placeholders for the screens */
 const Home = () => {
@@ -8,10 +9,6 @@ const Home = () => {
 
 const Chat = () => {
   return <Text>Chat</Text>;
-};
-
-const Profile = () => {
-  return <Text>Profile</Text>;
 };
 /* end placeholders */
 
@@ -22,7 +19,7 @@ function AppNav() {
     <Tab.Navigator initialRouteName="Authenticate">
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Chat" component={Chat} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="Profile" component={ProfilePage} />
     </Tab.Navigator>
   );
 }

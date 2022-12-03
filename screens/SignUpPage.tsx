@@ -1,36 +1,89 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { useAuth } from "../App";
 
 interface SignUpProps {
   navigation: any;
 }
 
+interface UserInfo {
+  email: string;
+  username: string;
+  fullName: string;
+  password: string;
+  phone: string;
+}
+
 const SignUpPage = ({ navigation }: SignUpProps) => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [userInfo, setUserInfo] = useState<UserInfo>({
+    email: "",
+    username: "",
+    fullName: "",
+    password: "",
+    phone: "",
+  });
   const [confirmPassword, setConfirmPassword] = useState("");
+  const auth = useAuth();
 
   const handleSignUp = () => {
-    console.log({ email, username, password, confirmPassword });
+    if (userInfo.password !== confirmPassword) return;
+    auth.signUp(userInfo);
   };
+
   return (
     <View>
       <Text>Sign up here!</Text>
+      <Text>Enter Full Name</Text>
+      <TextInput
+        placeholder="Fullname"
+        value={userInfo.fullName}
+        onChangeText={(val) =>
+          setUserInfo((prev) => {
+            return { ...prev, fullName: val };
+          })
+        }
+      />
       <Text>Enter Username</Text>
       <TextInput
         placeholder="Username"
-        value={username}
-        onChangeText={setUsername}
+        value={userInfo.username}
+        onChangeText={(val) =>
+          setUserInfo((prev) => {
+            return { ...prev, username: val };
+          })
+        }
       />
       <Text>Enter Email</Text>
-      <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
+      <TextInput
+        placeholder="Email"
+        value={userInfo.email}
+        onChangeText={(val) =>
+          setUserInfo((prev) => {
+            return { ...prev, email: val };
+          })
+        }
+      />
       <Text>Enter Password</Text>
       <TextInput
         placeholder="Password"
-        value={password}
-        onChangeText={setPassword}
+        value={userInfo.password}
+        onChangeText={(val) =>
+          setUserInfo((prev) => {
+            return { ...prev, password: val };
+          })
+        }
       />
+      <Text>Enter Phone Number</Text>
+      <TextInput
+        placeholder="Phone Number"
+        value={userInfo.phone}
+        onChangeText={(val) =>
+          setUserInfo((prev) => {
+            return { ...prev, phone: val };
+          })
+        }
+      />
+
       <Text>Confirm Password</Text>
       <TextInput
         placeholder="Confirm Password"
