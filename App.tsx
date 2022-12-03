@@ -84,7 +84,10 @@ export default function App() {
         // Save the token in the secure store and in the axios header
         // Change the state to indicate the user is signed in
         try {
-          const response = await axios.post("FIX_ME", data);
+          const response = await axios.post(
+            "http://35.1.157.178:8000/api/auth/login",
+            data
+          );
           const { token } = response.data;
           await SecureStore.setItemAsync("token", token);
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -101,7 +104,10 @@ export default function App() {
         // Save the token in the secure store and in the axios header
         // Change the state to indicate the user is signed in
         try {
-          const response = await axios.post("FIX_ME", data);
+          const response = await axios.post(
+            "http://35.1.157.178:8000/api/auth/signup",
+            data
+          );
           const { token } = response.data;
           await SecureStore.setItemAsync("token", token);
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
