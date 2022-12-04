@@ -14,7 +14,7 @@ interface IAuthContext {
 }
 
 const AuthContext = React.createContext<IAuthContext>(null!);
-
+export const useAuth = () => React.useContext(AuthContext);
 function SplashScreen() {
   return (
     // Center the content
@@ -84,14 +84,14 @@ export default function App() {
         // Save the token in the secure store and in the axios header
         // Change the state to indicate the user is signed in
         try {
-          const response = await axios.post(
-            "http://35.1.157.178:8000/api/auth/login",
-            data
-          );
-          const { token } = response.data;
-          await SecureStore.setItemAsync("token", token);
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          dispatch({ type: "SIGN_IN", token });
+          // const response = await axios.post(
+          //   "http://35.1.157.178:8000/api/auth/login",
+          //   data
+          // );
+          // const { token } = response.data;
+          // await SecureStore.setItemAsync("token", token);
+          // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          dispatch({ type: "SIGN_IN", token: "test" });
         } catch (e) {
           // TODO: Handle error
           console.log(e);
@@ -104,14 +104,14 @@ export default function App() {
         // Save the token in the secure store and in the axios header
         // Change the state to indicate the user is signed in
         try {
-          const response = await axios.post(
-            "http://35.1.157.178:8000/api/auth/signup",
-            data
-          );
-          const { token } = response.data;
-          await SecureStore.setItemAsync("token", token);
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-          dispatch({ type: "SIGN_IN", token });
+          // const response = await axios.post(
+          //   "http://35.1.157.178:8000/api/auth/signup",
+          //   data
+          // );
+          // const { token } = response.data;
+          // await SecureStore.setItemAsync("token", token);
+          // axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+          dispatch({ type: "SIGN_IN", token: "test" });
         } catch (e) {
           // TODO: Handle error
           console.log(e);
@@ -120,7 +120,7 @@ export default function App() {
     }),
     []
   );
-
+  // gives the children access to the auth context functions
   return (
     <AuthContext.Provider value={authContext}>
       {state.isLoading ? (
