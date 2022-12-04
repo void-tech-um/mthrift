@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import LoginError from "../components/LoginError";
+import MTHRIFT_Logo from "../images/MTHRIFT_Logo.png";
+import "../images"; 
 import {
   StyleSheet,
   Text,
   TextInput,
   View,
   TouchableOpacity,
+  Image
 } from "react-native";
 
 interface LoginPageProps {
@@ -21,7 +24,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   //and passwords
   const onPress = () => {
     if (usernameEntered === "" || passwordEntered === "") {
-      console.log("Username or password is emptey");
+      console.log("Username or password is empty");
       setErrorCheck(true);
       setTimeout(() => {
         setErrorCheck(false);
@@ -33,40 +36,49 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     }
   };
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
-      <Text style={styles.loginHeader}>Enter your login info to sign in!</Text>
-      <Text style={{ fontWeight: "bold" }}>Username:</Text>
-      <TextInput
-        style={{ height: 40 }}
-        placeholder="Username or Email"
-        onChangeText={setUsernameEntered}
-      />
-      <Text style={{ fontWeight: "bold" }}>Password:</Text>
-      <TextInput
-        style={{ height: 40 }}
-        placeholder="Password goes here!"
-        onChangeText={setPasswordEntered}
-      />
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text>Press Here</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-        <Text>Don't have an account?</Text>
-      </TouchableOpacity>
+      
+      <Image source={require('./MTHRIFT_Logo.png')} />  
+
+      <View>
+          <Text style={{color: "black", fontFamily: "string", fontWeight: "normal", writingDirection: "rtl"}}>Email:</Text>
+          <TextInput
+            style={{ height: 40, backgroundColor: "D9D9D9", borderRadius: 20}} 
+            /* placeholder="Username or Email" */
+            onChangeText={setUsernameEntered}
+          />
+          
+          <Text style={{color: "black", fontFamily: "string", fontWeight: "normal", writingDirection: "rtl"}}>Email:</Text>
+          <TextInput
+            style={{ height: 40, backgroundColor: "D9D9D9", borderRadius: 20}} 
+            /* placeholder="Username or Email" */
+            onChangeText={setPasswordEntered} 
+          />
+      </View>
+      <View>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
+          <Text>Login</Text>
+        </TouchableOpacity>
+        <Text>Or</Text>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("SignUp")}>
+          <Text>Create Account</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 10,
+    display: "flex", 
+    justifyContent: "center", 
+    alignItems: "center",
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
+    backgroundColor: "#00274C",
     padding: 10,
+    borderRadius: 50,  
   },
   countContainer: {
     alignItems: "center",
@@ -76,5 +88,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingBottom: 24,
   },
+  textEnter : {
+    display: "flex", 
+    flexDirection: "row",
+    alignItems: "center", 
+    justifycontent:"start",
+    /*TODO: Might have to change below to be a responsive measurement type.*/
+    borderRadius: 50, 
+  }
+  
 });
 export default LoginPage;

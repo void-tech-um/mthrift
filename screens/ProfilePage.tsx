@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+import Buttons from "./profilePage/buttons";
 
 interface UserInfo {
     email: string;
@@ -19,12 +20,15 @@ const ProfilePage = () => {
 
     return (
     <View style={styles.container}>
-      {/*<Text style = {styles.header}>Name: </Text> */}
+      <Buttons />
+      <Text style = {styles.header}>Name: </Text>
       <Text style = {styles.info}>{userInfo.fullName}</Text>
-      {/*<Text style = {styles.header}>Username: </Text> */}
+      <Text style = {styles.header}>Username: </Text>
       <Text style = {styles.info}>{userInfo.username}</Text>
-      {/*<Text style = {styles.header}>Email: </Text> */}
+      <Text style = {styles.header}>Email: </Text>
       <Text style = {styles.info}>{userInfo.email}</Text>
+      <Text style = {styles.header}>Phone: </Text>
+      <Text style = {styles.info}>{userInfo.phone}</Text>
     </View>
     );
 };
@@ -35,10 +39,12 @@ const styles = StyleSheet.create({
         justifyContent: "center", 
         alignItems: "center" 
     },
-    /*header: {
+    header: {
+        alignItems: "center", 
+        
         fontSize: 20,
         fontWeight: "bold"
-    },*/
+    },
     info: {
         fontSize: 16
     },
