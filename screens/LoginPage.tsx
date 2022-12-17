@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LoginError from "../components/LoginError";
-//import MTHRIFT.png from "../assets/MTHRIFT-Logo.png";
 import {
   StyleSheet,
   Text,
@@ -8,7 +7,8 @@ import {
   View,
   TouchableOpacity,
   Image, 
-  Linking
+  Linking, 
+  Dimensions
 } from "react-native";
 
 interface LoginPageProps {
@@ -38,6 +38,8 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   return (
     <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
+
+      <Image source={{uri: 'assets:/MTHRIFT.png'}} style={{width: 10, height: 10}} />
 
       <View style={styles.userInputContainer}>
         <Text style={{color: "black", fontWeight: "600", writingDirection: "rtl"}}>Email:</Text>
@@ -76,8 +78,9 @@ const styles = StyleSheet.create({
     display: "flex", 
     justifyContent: "center", 
     alignItems: "center",
-    marginTop: 150,
     backgroundColor: "#FFFFFF",
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
   },
   userInputContainer: {
     display: "flex",
