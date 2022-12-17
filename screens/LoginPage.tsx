@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import LoginError from "../components/LoginError";
-import MTHRIFT_Logo from "../images/MTHRIFT_Logo.png";
-import "../images"; 
+//import MTHRIFT.png from "../assets/MTHRIFT-Logo.png";
 import {
   StyleSheet,
   Text,
   TextInput,
   View,
   TouchableOpacity,
-  Image
+  Image, 
+  Linking
 } from "react-native";
 
 interface LoginPageProps {
@@ -38,31 +38,34 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   return (
     <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
-      
-      <Image source={require('./MTHRIFT_Logo.png')} />  
 
-      <View>
-          <Text style={{color: "black", fontFamily: "string", fontWeight: "normal", writingDirection: "rtl"}}>Email:</Text>
+      <View style={styles.userInputContainer}>
+        <Text style={{color: "black", fontWeight: "600", writingDirection: "rtl"}}>Email:</Text>
           <TextInput
-            style={{ height: 40, backgroundColor: "D9D9D9", borderRadius: 20}} 
-            /* placeholder="Username or Email" */
+            style={{ height: 40, width: 200, backgroundColor: "#D9D9D9", borderRadius: 20}}
             onChangeText={setUsernameEntered}
           />
-          
-          <Text style={{color: "black", fontFamily: "string", fontWeight: "normal", writingDirection: "rtl"}}>Email:</Text>
+      </View>
+      <View style={styles.userInputContainer}>
+          <Text style={{color: "black", fontWeight: "600", writingDirection: "rtl"}}>Password:</Text>
           <TextInput
-            style={{ height: 40, backgroundColor: "D9D9D9", borderRadius: 20}} 
-            /* placeholder="Username or Email" */
+            style={{ height: 40, width: 200, backgroundColor: "#D9D9D9", borderRadius: 20}}
             onChangeText={setPasswordEntered} 
           />
       </View>
-      <View>
+
+      <Text style={{ color: "#818181", textDecorationLine: "underline"}} 
+      onPress={() => Linking.openURL('http://google.com')}>Forgot Password?</Text>
+
+      <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text>Login</Text>
+          <Text style={{color: "#FFFFFF", fontWeight: "600",}}>Login</Text>
         </TouchableOpacity>
-        <Text>Or</Text>
+
+        <Text style={{ color: "#818181"}}>OR</Text>
+
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("SignUp")}>
-          <Text>Create Account</Text>
+          <Text style={{color: "#FFFFFF", fontWeight: "600",}}>Create Account</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -73,28 +76,29 @@ const styles = StyleSheet.create({
     display: "flex", 
     justifyContent: "center", 
     alignItems: "center",
+    marginTop: 150,
+    backgroundColor: "#FFFFFF",
+  },
+  userInputContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 300,
+    padding: 10,
+    margin: 5,
   },
   button: {
     alignItems: "center",
     backgroundColor: "#00274C",
     padding: 10,
     borderRadius: 50,  
+    width: 150,
+    margin: 10,
   },
-  countContainer: {
+  buttonContainer: {
     alignItems: "center",
-    padding: 10,
-  },
-  loginHeader: {
-    fontSize: 20,
-    paddingBottom: 24,
-  },
-  textEnter : {
-    display: "flex", 
-    flexDirection: "row",
-    alignItems: "center", 
-    justifycontent:"start",
-    /*TODO: Might have to change below to be a responsive measurement type.*/
-    borderRadius: 50, 
+    padding: 40,
   }
   
 });
