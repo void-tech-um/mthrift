@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from '../assets/MTHRIFT.png';
 import LoginError from "../components/LoginError";
 import {
   StyleSheet,
@@ -39,7 +40,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
 
-      <Image source={{uri: 'assets:/MTHRIFT.png'}} style={{width: 10, height: 10}} />
+      <Image source={ logo } style={{width: 10, height: 10}} />
 
       <View style={styles.userInputContainer}>
         <Text style={{color: "black", fontWeight: "600", writingDirection: "rtl"}}>Email:</Text>
