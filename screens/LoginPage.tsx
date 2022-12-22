@@ -6,6 +6,9 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  Image, 
+  Linking, 
+  Dimensions
 } from "react-native";
 
 interface LoginPageProps {
@@ -21,7 +24,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   //and passwords
   const onPress = () => {
     if (usernameEntered === "" || passwordEntered === "") {
-      console.log("Username or password is emptey");
+      console.log("Username or password is empty");
       setErrorCheck(true);
       setTimeout(() => {
         setErrorCheck(false);
@@ -33,48 +36,73 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     }
   };
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
-      <Text style={styles.loginHeader}>Enter your login info to sign in!</Text>
-      <Text style={{ fontWeight: "bold" }}>Username:</Text>
-      <TextInput
-        style={{ height: 40 }}
-        placeholder="Username or Email"
-        onChangeText={setUsernameEntered}
-      />
-      <Text style={{ fontWeight: "bold" }}>Password:</Text>
-      <TextInput
-        style={{ height: 40 }}
-        placeholder="Password goes here!"
-        onChangeText={setPasswordEntered}
-      />
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text>Press Here</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-        <Text>Don't have an account?</Text>
-      </TouchableOpacity>
+
+      <Image source={{uri: 'assets:/MTHRIFT.png'}} style={{width: 10, height: 10}} />
+
+      <View style={styles.userInputContainer}>
+        <Text style={{color: "black", fontWeight: "600", writingDirection: "rtl"}}>Email:</Text>
+          <TextInput
+            style={{ height: 40, width: 200, backgroundColor: "#D9D9D9", borderRadius: 20}}
+            onChangeText={setUsernameEntered}
+          />
+      </View>
+      <View style={styles.userInputContainer}>
+          <Text style={{color: "black", fontWeight: "600", writingDirection: "rtl"}}>Password:</Text>
+          <TextInput
+            style={{ height: 40, width: 200, backgroundColor: "#D9D9D9", borderRadius: 20}}
+            onChangeText={setPasswordEntered} 
+          />
+      </View>
+
+      <Text style={{ color: "#818181", textDecorationLine: "underline"}} 
+      onPress={() => Linking.openURL('http://google.com')}>Forgot Password?</Text>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={onPress}>
+          <Text style={{color: "#FFFFFF", fontWeight: "600",}}>Login</Text>
+        </TouchableOpacity>
+
+        <Text style={{ color: "#818181"}}>OR</Text>
+
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("SignUp")}>
+          <Text style={{color: "#FFFFFF", fontWeight: "600",}}>Create Account</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 10,
+    display: "flex", 
+    justifyContent: "center", 
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+  },
+  userInputContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 300,
+    padding: 10,
+    margin: 5,
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#DDDDDD",
+    backgroundColor: "#00274C",
     padding: 10,
+    borderRadius: 50,  
+    width: 150,
+    margin: 10,
   },
-  countContainer: {
+  buttonContainer: {
     alignItems: "center",
-    padding: 10,
-  },
-  loginHeader: {
-    fontSize: 20,
-    paddingBottom: 24,
-  },
+    padding: 40,
+  }
+  
 });
 export default LoginPage;
