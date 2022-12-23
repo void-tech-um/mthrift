@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { useAuth } from "../App";
-
+import { useUserContext } from "../App";
 interface SignUpProps {
   navigation: any;
 }
@@ -11,22 +11,24 @@ interface UserInfo {
   username: string;
   fullName: string;
   password: string;
-  phone: string;
+  phoneNumber: string;
 }
 
 const SignUpPage = ({ navigation }: SignUpProps) => {
+  const {info, setInfo} = useUserContext();
   const [userInfo, setUserInfo] = useState<UserInfo>({
     email: "",
     username: "",
     fullName: "",
     password: "",
-    phone: "",
+    phoneNumber: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
   const auth = useAuth();
 
   const handleSignUp = () => {
     if (userInfo.password !== confirmPassword) return;
+    setInfo(userInfo);
     auth.signUp(userInfo);
   };
 
@@ -39,6 +41,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
         value={userInfo.fullName}
         onChangeText={(val) =>
           setUserInfo((prev) => {
+
             return { ...prev, fullName: val };
           })
         }
@@ -76,10 +79,10 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
       <Text>Enter Phone Number</Text>
       <TextInput
         placeholder="Phone Number"
-        value={userInfo.phone}
+        value={userInfo.phoneNumber}
         onChangeText={(val) =>
           setUserInfo((prev) => {
-            return { ...prev, phone: val };
+            return { ...prev, phoneNumber: val };
           })
         }
       />

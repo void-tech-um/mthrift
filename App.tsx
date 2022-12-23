@@ -1,4 +1,7 @@
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useNavigationBuilder,
+} from "@react-navigation/native";
 import { Text, View } from "react-native";
 import SecureStore from "expo-secure-store";
 
@@ -12,6 +15,11 @@ interface IAuthContext {
   signOut: () => void;
   signUp: (data: any) => Promise<void>;
 }
+interface context {
+  info: any;
+  setInfo: any;
+}
+export const userContext = React.createContext<context>(null!);
 
 const AuthContext = React.createContext<IAuthContext>(null!);
 export const useAuth = () => React.useContext(AuthContext);
@@ -120,22 +128,28 @@ export default function App() {
     }),
     []
   );
+  const [info, setInfo] = React.useState();
+
   // gives the children access to the auth context functions
   return (
     <AuthContext.Provider value={authContext}>
-      {state.isLoading ? (
-        <SplashScreen />
-      ) : (
-        <NavigationContainer>
-          {state.userToken == null ? (
-            // No token found, user isn't signed in
-            <Authenticate />
-          ) : (
-            // User is signed in
-            <AppNav />
-          )}
-        </NavigationContainer>
-      )}
+      <userContext.Provider value={{ info, setInfo }}>
+        {state.isLoading ? (
+          <SplashScreen />
+        ) : (
+          <NavigationContainer>
+            {state.userToken == null ? (
+              // No token found, user isn't signed in
+              <Authenticate />
+            ) : (
+              // User is signed in
+              <AppNav />
+            )}
+          </NavigationContainer>
+        )}
+      </userContext.Provider>
     </AuthContext.Provider>
   );
 }
+//export the user context (AKA the user information)
+export const useUserContext = () => React.useContext(userContext);

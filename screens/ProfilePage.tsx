@@ -1,4 +1,7 @@
 import * as React from "react";
+import { userContext } from "../App";
+//import the context
+import { useUserContext } from "../App";
 import {
   StyleSheet,
   Text,
@@ -7,31 +10,19 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-interface UserInfo {
-  email: string;
-  username: string;
-  fullName: string;
-  phone: string;
-}
-
 const ProfilePage = () => {
-  const [userInfo, setUserInfo] = React.useState<UserInfo>({
-    email: "",
-    username: "",
-    fullName: "",
-    phone: "",
-  });
-
+  //extract user info from userContext (aka the user information)
+  const { info } = useUserContext();
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Name: </Text>
-      <Text style={styles.info}>{userInfo.fullName}</Text>
+      <Text style={styles.info}>{info.fullName}</Text>
       <Text style={styles.header}>Username: </Text>
-      <Text style={styles.info}>{userInfo.username}</Text>
+      <Text style={styles.info}>{info.username}</Text>
       <Text style={styles.header}>Email: </Text>
-      <Text style={styles.info}>{userInfo.email}</Text>
+      <Text style={styles.info}>{info.email}</Text>
       <Text style={styles.header}>Phone: </Text>
-      <Text style={styles.info}>{userInfo.phone}</Text>
+      <Text style={styles.info}>{info.phoneNumber}</Text>
     </View>
   );
 };
