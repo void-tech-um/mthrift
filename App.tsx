@@ -15,11 +15,13 @@ interface IAuthContext {
   signOut: () => void;
   signUp: (data: any) => Promise<void>;
 }
-interface context {
+//typescript interface for passing user info to other components
+interface UserInfo {
   info: any;
   setInfo: any;
 }
-export const userContext = React.createContext<context>(null!);
+//export the user context so it can be imported in other components
+export const userContext = React.createContext<UserInfo>(null!);
 
 const AuthContext = React.createContext<IAuthContext>(null!);
 export const useAuth = () => React.useContext(AuthContext);
@@ -128,6 +130,8 @@ export default function App() {
     }),
     []
   );
+  
+  //maintain the user information in the app component
   const [info, setInfo] = React.useState();
 
   // gives the children access to the auth context functions
