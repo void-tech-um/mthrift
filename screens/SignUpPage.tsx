@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useAuth } from "../App";
 import { useUserContext } from "../App";
 interface SignUpProps {
@@ -27,7 +27,10 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
   const auth = useAuth();
 
   const handleSignUp = () => {
-    if (userInfo.password !== confirmPassword) return;
+    if (userInfo.password !== confirmPassword){
+      Alert.alert("Passwords do not match");
+      return;
+    };
     setInfo(userInfo);
     auth.signUp(userInfo);
   };
