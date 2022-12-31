@@ -127,8 +127,9 @@ export default function App() {
         <SplashScreen />
       ) : (
         <NavigationContainer>
-          {state.userToken == null ? (
+          {state.userToken === null ? (
             // No token found, user isn't signed in
+            // First thing user sees
             <Authenticate />
           ) : (
             // User is signed in
