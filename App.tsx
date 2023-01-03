@@ -137,21 +137,20 @@ export default function App() {
   // gives the children access to the auth context functions
   return (
     <AuthContext.Provider value={authContext}>
-      <userContext.Provider value={{ info, setInfo }}>
-        {state.isLoading ? (
-          <SplashScreen />
-        ) : (
-          <NavigationContainer>
-            {state.userToken == null ? (
-              // No token found, user isn't signed in
-              <Authenticate />
-            ) : (
-              // User is signed in
-              <AppNav />
-            )}
-          </NavigationContainer>
-        )}
-      </userContext.Provider>
+      {state.isLoading ? (
+        <SplashScreen />
+      ) : (
+        <NavigationContainer>
+          {state.userToken === null ? (
+            // No token found, user isn't signed in
+            // First thing user sees
+            <Authenticate />
+          ) : (
+            // User is signed in
+            <AppNav />
+          )}
+        </NavigationContainer>
+      )}
     </AuthContext.Provider>
   );
 }
