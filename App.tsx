@@ -1,4 +1,7 @@
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useNavigationBuilder,
+} from "@react-navigation/native";
 import { Text, View } from "react-native";
 import SecureStore from "expo-secure-store";
 
@@ -12,6 +15,13 @@ interface IAuthContext {
   signOut: () => void;
   signUp: (data: any) => Promise<void>;
 }
+//typescript interface for passing user info to other components
+interface UserInfo {
+  info: any;
+  setInfo: any;
+}
+//export the user context so it can be imported in other components
+export const userContext = React.createContext<UserInfo>(null!);
 
 const AuthContext = React.createContext<IAuthContext>(null!);
 export const useAuth = () => React.useContext(AuthContext);
@@ -120,6 +130,10 @@ export default function App() {
     }),
     []
   );
+  
+  //maintain the user information in the app component
+  const [info, setInfo] = React.useState();
+
   // gives the children access to the auth context functions
   return (
     <AuthContext.Provider value={authContext}>
@@ -140,3 +154,5 @@ export default function App() {
     </AuthContext.Provider>
   );
 }
+//export the user context (AKA the user information)
+export const useUserContext = () => React.useContext(userContext);
