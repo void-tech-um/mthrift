@@ -32,8 +32,7 @@ const ProfilePage = () => {
             <Text style={styles.text}>Wishlist</Text>
           </Pressable>
         </View>
-        { showingSelling && <Text>RenderSellingComponent</Text> }
-        { !showingSelling && <Text>RenderWishlistComponent</Text> }
+        { showingSelling ? <Text>RenderSellingComponent</Text> : <Text>RenderWishlistComponent</Text> }
 
       </View>
     </View>
