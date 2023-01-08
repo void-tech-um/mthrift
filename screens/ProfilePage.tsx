@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import { UserContext } from "../App";
 //import the context
 import { useUserContext } from "../App";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";

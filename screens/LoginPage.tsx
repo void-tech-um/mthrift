@@ -11,7 +11,7 @@ import {
   Linking,
   Dimensions,
 } from "react-native";
-
+import { useAuth, UserContext } from "../App";
 interface LoginPageProps {
   navigation: any;
 }
@@ -20,21 +20,21 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
   const [usernameEntered, setUsernameEntered] = useState("");
   const [passwordEntered, setPasswordEntered] = useState("");
   const [errorCheck, setErrorCheck] = useState(false);
-
+  const auth = useAuth();
   //button to eventually do validation check with database, to see if user exists (validate with emails
   //and passwords
   const onPress = () => {
-    if (usernameEntered === "" || passwordEntered === "") {
-      console.log("Username or password is empty");
-      setErrorCheck(true);
-      setTimeout(() => {
-        setErrorCheck(false);
-      }, 2500);
-    } else {
-      // we have username and password, login
+    // if (usernameEntered === "" || passwordEntered === "") {
+    //   console.log("Username or password is empty");
+    //   setErrorCheck(true);
+    //   setTimeout(() => {
+    //     setErrorCheck(false);
+    //   }, 2500);
+    // } else {
+    //   // we have username and password, login
       console.log("Username: " + usernameEntered);
       console.log("Password: " + passwordEntered);
-    }
+      auth.signIn({username:usernameEntered, password:passwordEntered});
   };
   return (
     <View style={styles.container}>
@@ -46,7 +46,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <Text
           style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}
         >
-          Email:
+          Username: 
         </Text>
         <TextInput
           style={{
@@ -84,7 +84,11 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={onPress}>
-          <Text style={{ color: "#FFFFFF", fontWeight: "600" }}>Login</Text>
+          <Text
+            style={{ color: "#FFFFFF", fontWeight: "600" }}
+          >
+            Login
+          </Text>
         </TouchableOpacity>
 
         <Text style={{ color: "#818181" }}>OR</Text>
