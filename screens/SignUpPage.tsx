@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from '../assets/MTHRIFT.png'
 import {
   StyleSheet,
   Text,
@@ -65,7 +66,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
       <Text
           style={{ color: "#00274C", fontWeight: "regular", writingDirection: "rtl" }}
         >
-          Welcome to MTrift! 
+          Welcome to MThrift! 
       </Text>
 
       // Form Entry Places
@@ -82,7 +83,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
             backgroundColor: "#D9D9D9",
             borderRadius: 20,
           }}
-          onChangeText={setUsernameEntered}
+          // onChangeText={setUsernameEntered}
         />
       </View>
 
@@ -99,7 +100,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
             backgroundColor: "#D9D9D9",
             borderRadius: 20,
           }}
-          onChangeText={setUsernameEntered}
+          // onChangeText={setUsernameEntered}
         />
       </View>
 
@@ -117,7 +118,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
             backgroundColor: "#D9D9D9",
             borderRadius: 20,
           }}
-          onChangeText={setUsernameEntered}
+          // onChangeText={setUsernameEntered}
         />
       </View>
 
@@ -135,7 +136,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
             backgroundColor: "#D9D9D9",
             borderRadius: 20,
           }}
-          onChangeText={setUsernameEntered}
+          // onChangeText={setUsernameEntered}
         />
       </View>
 
@@ -152,7 +153,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
             backgroundColor: "#D9D9D9",
             borderRadius: 20,
           }}
-          onChangeText={setUsernameEntered}
+          // onChangeText={setUsernameEntered}
         />
       </View>
 
@@ -170,7 +171,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
             borderRadius: 20,
           }}
           value={confirmPassword}
-          onChangeText={setConfirmPassword}
+          //  onChangeText={setConfirmPassword}
         />
       </View>
       
