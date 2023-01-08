@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { userContext } from "../App";
+import { UserContext } from "../App";
 //import the context
 import { useUserContext } from "../App";
 import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
@@ -32,8 +32,11 @@ const ProfilePage = () => {
             <Text style={styles.text}>Wishlist</Text>
           </Pressable>
         </View>
-        { showingSelling ? <Text>RenderSellingComponent</Text> : <Text>RenderWishlistComponent</Text> }
-
+        {showingSelling ? (
+          <Text>RenderSellingComponent</Text>
+        ) : (
+          <Text>RenderWishlistComponent</Text>
+        )}
       </View>
     </View>
   );

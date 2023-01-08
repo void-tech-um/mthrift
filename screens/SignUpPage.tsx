@@ -15,7 +15,7 @@ interface UserInfo {
 }
 
 const SignUpPage = ({ navigation }: SignUpProps) => {
-  const {info, setInfo} = useUserContext();
+  const { info, setInfo } = useUserContext();
   const [userInfo, setUserInfo] = useState<UserInfo>({
     email: "",
     username: "",
@@ -27,10 +27,10 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
   const auth = useAuth();
 
   const handleSignUp = () => {
-    if (userInfo.password !== confirmPassword){
+    if (userInfo.password !== confirmPassword) {
       Alert.alert("Passwords do not match");
       return;
-    };
+    }
     setInfo(userInfo);
     auth.signUp(userInfo);
   };
@@ -44,7 +44,6 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
         value={userInfo.fullName}
         onChangeText={(val) =>
           setUserInfo((prev) => {
-
             return { ...prev, fullName: val };
           })
         }
