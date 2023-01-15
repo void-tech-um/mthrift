@@ -3,9 +3,11 @@ import { useState } from "react";
 import { UserContext } from "../App";
 //import the context
 import { useUserContext } from "../App";
-import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import { StyleSheet, Text, View, Pressable, Alert, TouchableOpacity } from "react-native";
+import LoginPage from "./LoginPage";
 
 const ProfilePage = () => {
+  const [loggedIn, setLoggedIn] = useState(true);
   //extract user info from userContext (aka the user information)
   const { info } = useUserContext();
   const onSelling = () => {
@@ -16,11 +18,24 @@ const ProfilePage = () => {
     Alert.alert("Switch to wishlist");
     setShowingSelling(false);
   };
+  const logout = () => {
+    Alert.alert("Are you sure you would like to logout?");
+    setLoggedIn(false);
+  };
   const [showingSelling, setShowingSelling] = useState(true);
 
   return (
     <View style={styles.page}>
       <View style={styles.profileInfo}>
+        <TouchableOpacity onPress={logout} style={styles.logoutButton}>
+          <Text style={styles.logoutButton}>Logout</Text>
+        </TouchableOpacity>
+        {loggedIn ? (
+          <Text>Logged in</Text>
+        ) : (
+            // todo: send user to login page
+            <LoginPage />
+        )}
         <Text style={styles.fullName}>{info.fullName}</Text>
         <Text style={styles.username}>@{info.username}</Text>
         <Text style={styles.phoneNumber}>&#128222;{info.phoneNumber}</Text>
@@ -101,6 +116,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "white",
+  },
+  logoutButton: {
+    alignItems: "center",
+    backgroundColor: "darkred",
+    padding: 10,
+    borderRadius: 20,
+    marginTop: 20,
+    marginRight: 20,
   },
 });
 

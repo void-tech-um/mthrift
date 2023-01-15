@@ -8,7 +8,20 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from "react-native";
+
+// function getOrientation(window) {
+//   return (window.width < window.height) ? 'portrait' : 'landscape'
+// }
+
+// function getFontSizeByWindowWidth(window, fontSize) {
+//   const baseWidth = 320; // width of smallest iPhone
+//   const width = (getOrientation(window) == 'portrait') ? window.width : window.height
+//   return PixelRatio.roundToNearestPixel(fontSize * (width / baseWidth));
+// }
+
+// const fontSize = getFontSizeByWindowWidth(window, 14)
 
 // display the logo in top left corner with filter button right next to it with item card in the center
 const HomePage = () => {
@@ -21,7 +34,7 @@ const HomePage = () => {
       </TouchableOpacity>
       </View>
       <ScrollView style={styles.scrollView}>
-        <ItemCard />
+        <ItemCard style={styles.cardStyle} />
         <ItemCard />
         <ItemCard />
         <ItemCard />
@@ -33,9 +46,15 @@ const HomePage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    disaplay: "flex",
     justifyContent: "center",
     alignItems: "center",
+    height: Dimensions.get("window").height,
+    width: Dimensions.get("window").width,
+  },
+  cardStyle: {
+    width: 400,
+    height: 200,
   },
   topContainer: {
     display: "flex",
@@ -70,7 +89,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    width: 400,
+    width: 350,
   },
 });
 
