@@ -6,6 +6,7 @@ import Authenticate from "./navigation/Authenticate";
 import AppNav from "./navigation/AppNav";
 import React from "react";
 import axios from "axios";
+import ItemPage from "./screens/ItemPage";
 
 interface IAuthContext {
   signIn: (data: any) => Promise<void>;
@@ -129,7 +130,7 @@ export default function App() {
         <NavigationContainer>
           {state.userToken == null ? (
             // No token found, user isn't signed in
-            <Authenticate />
+            <ItemPage />
           ) : (
             // User is signed in
             <AppNav />
