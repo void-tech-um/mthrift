@@ -130,7 +130,7 @@ export default function App() {
         <NavigationContainer>
           {state.userToken == null ? (
             // No token found, user isn't signed in
-            <ItemPage />
+            <Authenticate />
           ) : (
             // User is signed in
             <AppNav />
