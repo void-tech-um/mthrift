@@ -2,6 +2,7 @@ import modelShirt from '../assets/modelShirt.jpg';
 import chatIcon from '../assets/chatIcon.png';
 import likeIcon from '../assets/likeIcon.png';
 import dislikeIcon from '../assets/dislikeIcon.png';
+import gradient from '../assets/gradient.jpeg';
 import {
     StyleSheet,
     Text,
@@ -10,23 +11,26 @@ import {
     Image,
     Dimensions,
     ScrollView,
+    ImageBackground
   } from "react-native";
 
 const ItemPage = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.firstRow}>
-                <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
-                    <Image source={modelShirt} style={styles.scrollImg}></Image>
-                    <Image source={modelShirt} style={styles.scrollImg}></Image>
-                </ScrollView>
-            </View>
-            <View style={styles.row}>
-                <TouchableOpacity style={{display: 'flex'}} ><Image source={ dislikeIcon } style={styles.icon} /></TouchableOpacity>
-                <TouchableOpacity style={{display: 'flex'}} ><Image source={ chatIcon } style={styles.icon} /></TouchableOpacity>
-                <TouchableOpacity style={{display: 'flex'}} ><Image source={ likeIcon } style={styles.icon} /></TouchableOpacity>
-            </View>
+            <ImageBackground source={gradient} style={styles.container}>
+                <View style={styles.firstRow}>
+                    <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+                        <Image source={modelShirt} style={styles.scrollImg}></Image>
+                        <Image source={modelShirt} style={styles.scrollImg}></Image>
+                    </ScrollView>
+                </View>
+                <View style={styles.row}>
+                    <TouchableOpacity style={{display: 'flex'}} ><Image source={ dislikeIcon } style={styles.icon} /></TouchableOpacity>
+                    <TouchableOpacity style={{display: 'flex'}} ><Image source={ chatIcon } style={styles.icon} /></TouchableOpacity>
+                    <TouchableOpacity style={{display: 'flex'}} ><Image source={ likeIcon } style={styles.icon} /></TouchableOpacity>
+                </View>
+            </ImageBackground>
         </View>
     );
 };

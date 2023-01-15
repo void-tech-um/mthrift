@@ -133,7 +133,7 @@ export default function App() {
             <Authenticate />
           ) : (
             // User is signed in
-            <AppNav />
+            <ItemPage />
           )}
         </NavigationContainer>
       )}
