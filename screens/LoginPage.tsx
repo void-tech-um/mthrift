@@ -46,7 +46,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <Text
           style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}
         >
-          Email:
+          Email
         </Text>
         <TextInput
           style={{
@@ -62,7 +62,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <Text
           style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}
         >
-          Password:
+          Password
         </Text>
         <TextInput
           style={{

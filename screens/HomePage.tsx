@@ -11,18 +11,6 @@ import {
   Dimensions,
 } from "react-native";
 
-// function getOrientation(window) {
-//   return (window.width < window.height) ? 'portrait' : 'landscape'
-// }
-
-// function getFontSizeByWindowWidth(window, fontSize) {
-//   const baseWidth = 320; // width of smallest iPhone
-//   const width = (getOrientation(window) == 'portrait') ? window.width : window.height
-//   return PixelRatio.roundToNearestPixel(fontSize * (width / baseWidth));
-// }
-
-// const fontSize = getFontSizeByWindowWidth(window, 14)
-
 // display the logo in top left corner with filter button right next to it with item card in the center
 const HomePage = () => {
   return (
@@ -49,18 +37,21 @@ const styles = StyleSheet.create({
     disaplay: "flex",
     justifyContent: "center",
     alignItems: "center",
+    paddingLeft: "3%",
+    paddingRight: "3%",
     height: Dimensions.get("window").height,
-    width: Dimensions.get("window").width,
+    // width: Dimensions.get("window").width,
+    width: "100%",
   },
   cardStyle: {
-    width: 400,
+    width: "100%",
     height: 200,
   },
   topContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: 400,
+    width: "100%",
     padding: 10,
     marginTop: 5,
   },
@@ -89,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    width: 350,
+    width: "100%",
   },
 });
 

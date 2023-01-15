@@ -16,7 +16,36 @@ const ItemCard = (props: any) => {
   });
   return (
     <View style={styles.container}>
-      <View style={styles.buttonContainer}>
+      <View style={{
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "auto",
+        marginBottom: 20,
+        marginLeft: 10
+      }}>
+        <Text style={styles.name}>{"Michigan Jersey"}</Text>
+        {/* <Text style={styles.header}>Price: </Text> */}
+        
+        <View style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      
+      }}>
+ 
+        {/* <Text style={styles.header}>Price: </Text> */}
+        <Text style={{
+           fontSize: 25,
+           color: "white",
+           marginRight: 15
+        }}>{"Size:YL"}</Text>
+        <Text style={styles.price}>{"$30"}</Text>
+      
+      </View>
+      
+      </View>
+
+      {<View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.likeButton}>
           <Text style={styles.buttonText}>Like</Text>
         </TouchableOpacity>
@@ -26,38 +55,39 @@ const ItemCard = (props: any) => {
         <TouchableOpacity style={styles.dislikeButton}>
           <Text style={styles.buttonText}>Dislike</Text>
         </TouchableOpacity>
-      </View>
-      <Text style={styles.header}>Name: </Text>
-      <Text style={styles.info}>{itemInfo.name}</Text>
-      <Text style={styles.header}>Price: </Text>
-      <Text style={styles.info}>{itemInfo.price}</Text>
+      </View> }
+      {<Text style={styles.header}>Name: </Text> }
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
     backgroundColor: "#00274C",
-    width: 400,
+    width: "100%",
     height: 550,
     borderRadius: 20,
     marginTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   header: {
-    alignItems: "center",
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
-    marginRight: 300,
   },
-  info: {
+  name: {
     fontSize: 16,
     color: "white",
-    marginRight: 300,
-    marginBottom: 20,
+  },
+  price: {
+    fontSize: 30,
+    color: "black",
+    backgroundColor: "lightblue",
+    
+    padding: 5
   },
   buttonContainer: {
     flex: 1,

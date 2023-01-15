@@ -10,7 +10,7 @@ interface ProfileProps {
 }
 
 
-const ProfilePage = ({ navigation }: ProfileProps) => {
+const ProfilePage = ({  }: ProfileProps) => {
   //extract user info from userContext (aka the user information)
   const { info } = useUserContext();
   const onSelling = () => {
@@ -26,6 +26,7 @@ const ProfilePage = ({ navigation }: ProfileProps) => {
 
   const authLogOut = useAuth();
   const handleLogOut = () => {
+    //Alert.alert("Are you sure you want to log out?");
     setLoggedIn(false);
     authLogOut.signOut();
   };
@@ -33,7 +34,7 @@ const ProfilePage = ({ navigation }: ProfileProps) => {
   return (
     <View style={styles.page}>
       <View style={styles.profileInfo}>
-        <TouchableOpacity onPress={handleLogOut} style={styles.logoutButton}>
+        <TouchableOpacity onPress={handleLogOut}>
           <Text style={styles.logoutButton}>Logout</Text>
         </TouchableOpacity>
         <Text style={styles.fullName}>{info.fullName}</Text>
@@ -121,9 +122,14 @@ const styles = StyleSheet.create({
     color: "white",
   },
   logoutButton: {
-    alignItems: "center",
+    width: 120,
+    color: "white",
+    textAlign: "center",
     backgroundColor: "darkred",
-    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
     borderRadius: 20,
     marginTop: 20,
     marginRight: 20,
