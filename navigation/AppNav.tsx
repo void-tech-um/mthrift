@@ -1,7 +1,8 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text } from "react-native";
+import React from "react";
+import TabNavigator from "../components/TabNavigator";
 import ProfilePage from "../screens/ProfilePage";
 import HomePage from "../screens/HomePage";
+import { Text } from "react-native";
 
 
 /* Placeholders for the screens */
@@ -10,15 +11,23 @@ const Chat = () => {
 };
 /* end placeholders */
 
-const Tab = createBottomTabNavigator();
+interface INavScreenProps {
+  name: string;
+  component: React.ComponentType;
+}
+
+const NavScreen: React.FC<INavScreenProps> = ({ name, component }) => {
+  const Component = component;
+  return <Component />;
+};
 
 function AppNav() {
   return (
-    <Tab.Navigator initialRouteName="Authenticate">
-      <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Chat" component={Chat} />
-      <Tab.Screen name="Profile" component={ProfilePage} />
-    </Tab.Navigator>
+    <TabNavigator>
+      <NavScreen name="Home" component={HomePage} />
+      <NavScreen name="Chat" component={Chat} />
+      <NavScreen name="Profile" component={ProfilePage} />
+    </TabNavigator>
   );
 }
 
