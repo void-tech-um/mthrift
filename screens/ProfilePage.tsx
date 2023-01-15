@@ -30,6 +30,9 @@ const ProfilePage = () => {
         <TouchableOpacity onPress={logout} style={styles.logoutButton}>
           <Text style={styles.logoutButton}>Logout</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+
+        </TouchableOpacity>
         {loggedIn ? (
           <Text>Logged in</Text>
         ) : (
