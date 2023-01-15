@@ -10,7 +10,7 @@ interface ProfileProps {
 }
 
 
-const ProfilePage = ({  }: ProfileProps) => {
+const ProfilePage = ({ navigation }: ProfileProps) => {
   //extract user info from userContext (aka the user information)
   const { info } = useUserContext();
   const onSelling = () => {
