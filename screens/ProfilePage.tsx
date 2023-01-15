@@ -1,13 +1,16 @@
 import * as React from "react";
 import { useState } from "react";
 import { UserContext } from "../App";
+import { useAuth } from "../App";
 //import the context
 import { useUserContext } from "../App";
 import { StyleSheet, Text, View, Pressable, Alert, TouchableOpacity } from "react-native";
-import LoginPage from "./LoginPage";
+interface ProfileProps {
+  navigation: any;
+}
 
-const ProfilePage = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+
+const ProfilePage = ({ navigation }: ProfileProps) => {
   //extract user info from userContext (aka the user information)
   const { info } = useUserContext();
   const onSelling = () => {
@@ -18,27 +21,21 @@ const ProfilePage = () => {
     Alert.alert("Switch to wishlist");
     setShowingSelling(false);
   };
-  const logout = () => {
-    Alert.alert("Are you sure you would like to logout?");
-    setLoggedIn(false);
-  };
   const [showingSelling, setShowingSelling] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  const authLogOut = useAuth();
+  const handleLogOut = () => {
+    setLoggedIn(false);
+    authLogOut.signOut();
+  };
 
   return (
     <View style={styles.page}>
       <View style={styles.profileInfo}>
-        <TouchableOpacity onPress={logout} style={styles.logoutButton}>
+        <TouchableOpacity onPress={handleLogOut} style={styles.logoutButton}>
           <Text style={styles.logoutButton}>Logout</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-
-        </TouchableOpacity>
-        {loggedIn ? (
-          <Text>Logged in</Text>
-        ) : (
-            // todo: send user to login page
-            <LoginPage />
-        )}
         <Text style={styles.fullName}>{info.fullName}</Text>
         <Text style={styles.username}>@{info.username}</Text>
         <Text style={styles.phoneNumber}>&#128222;{info.phoneNumber}</Text>
@@ -58,6 +55,9 @@ const ProfilePage = () => {
       </View>
     </View>
   );
+
+ 
+  // 
 };
 
 const styles = StyleSheet.create({
