@@ -1,4 +1,7 @@
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  useNavigationBuilder,
+} from "@react-navigation/native";
 import { Text, View } from "react-native";
 import SecureStore from "expo-secure-store";
 
@@ -13,9 +16,18 @@ interface IAuthContext {
   signOut: () => void;
   signUp: (data: any) => Promise<void>;
 }
+//typescript interface for passing user info to other components
+interface UserInfo {
+  info: any;
+  setInfo: any;
+}
+//export the user context so it can be imported in other components
+export const UserContext = React.createContext<UserInfo>(null!);
+export const AuthContext = React.createContext<IAuthContext>(null!);
 
-const AuthContext = React.createContext<IAuthContext>(null!);
+export const useUserContext = () => React.useContext(UserContext);
 export const useAuth = () => React.useContext(AuthContext);
+
 function SplashScreen() {
   return (
     // Center the content
@@ -121,22 +133,29 @@ export default function App() {
     }),
     []
   );
+
+  //maintain the user information in the app component
+  const [info, setInfo] = React.useState();
+
   // gives the children access to the auth context functions
   return (
     <AuthContext.Provider value={authContext}>
-      {state.isLoading ? (
-        <SplashScreen />
-      ) : (
-        <NavigationContainer>
-          {state.userToken == null ? (
-            // No token found, user isn't signed in
-            <Authenticate />
-          ) : (
-            // User is signed in
-            <ItemPage />
-          )}
-        </NavigationContainer>
-      )}
+      <UserContext.Provider value={{ info, setInfo }}>
+        {state.isLoading ? (
+          <SplashScreen />
+        ) : (
+          <NavigationContainer>
+            {state.userToken === null ? (
+              // No token found, user isn't signed in
+              // First thing user sees
+              <Authenticate />
+            ) : (
+              // User is signed in
+              <AppNav />
+            )}
+          </NavigationContainer>
+        )}
+      </UserContext.Provider>
     </AuthContext.Provider>
   );
 }
