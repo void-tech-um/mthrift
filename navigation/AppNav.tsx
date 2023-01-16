@@ -3,7 +3,6 @@ import { Text } from "react-native";
 import ProfilePage from "../screens/ProfilePage";
 import HomePage from "../screens/HomePage";
 
-
 /* Placeholders for the screens */
 const Chat = () => {
   return <Text>Chat</Text>;

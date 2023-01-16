@@ -5,12 +5,9 @@ import { useAuth } from "../App";
 //import the context
 import { useUserContext } from "../App";
 import { StyleSheet, Text, View, Pressable, Alert, TouchableOpacity } from "react-native";
-interface ProfileProps {
-  navigation: any;
-}
 
 
-const ProfilePage = ({ navigation }: ProfileProps) => {
+const ProfilePage = () => {
   //extract user info from userContext (aka the user information)
   const { info } = useUserContext();
   const onSelling = () => {
