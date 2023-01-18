@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Dimensions,
 } from "react-native";
 
 // display the logo in top left corner with filter button right next to it with item card in the center
@@ -20,8 +21,8 @@ const HomePage = () => {
         <Text style={styles.buttonText}>Filter</Text>
       </TouchableOpacity>
       </View>
-      <ScrollView style={styles.scrollView}>
-        <ItemCard />
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <ItemCard style={styles.cardStyle} />
         <ItemCard />
         <ItemCard />
         <ItemCard />
@@ -33,15 +34,24 @@ const HomePage = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    disaplay: "flex",
     justifyContent: "center",
     alignItems: "center",
+    paddingLeft: "3%",
+    paddingRight: "3%",
+    height: Dimensions.get("window").height,
+    // width: Dimensions.get("window").width,
+    width: "100%",
+  },
+  cardStyle: {
+    width: "100%",
+    height: 200,
   },
   topContainer: {
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: 400,
+    width: "100%",
     padding: 10,
     marginTop: 5,
   },
@@ -70,7 +80,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
-    width: 400,
+    width: "100%",
   },
 });
 

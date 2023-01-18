@@ -1,9 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
 import { UserContext } from "../App";
+import { useAuth } from "../App";
 //import the context
 import { useUserContext } from "../App";
-import { StyleSheet, Text, View, Pressable, Alert } from "react-native";
+import { StyleSheet, Text, View, Pressable, Alert, TouchableOpacity } from "react-native";
+
 
 const ProfilePage = () => {
   //extract user info from userContext (aka the user information)
@@ -17,10 +19,21 @@ const ProfilePage = () => {
     setShowingSelling(false);
   };
   const [showingSelling, setShowingSelling] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  const authLogOut = useAuth();
+  const handleLogOut = () => {
+    //Alert.alert("Are you sure you want to log out?");
+    setLoggedIn(false);
+    authLogOut.signOut();
+  };
 
   return (
     <View style={styles.page}>
       <View style={styles.profileInfo}>
+        <TouchableOpacity onPress={handleLogOut}>
+          <Text style={styles.logoutButton}>Logout</Text>
+        </TouchableOpacity>
         <Text style={styles.fullName}>{info.fullName}</Text>
         <Text style={styles.username}>@{info.username}</Text>
         <Text style={styles.phoneNumber}>&#128222;{info.phoneNumber}</Text>
@@ -40,6 +53,9 @@ const ProfilePage = () => {
       </View>
     </View>
   );
+
+ 
+  // 
 };
 
 const styles = StyleSheet.create({
@@ -101,6 +117,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "white",
+  },
+  logoutButton: {
+    width: 120,
+    color: "white",
+    textAlign: "center",
+    backgroundColor: "darkred",
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderRadius: 20,
+    marginTop: 20,
+    marginRight: 20,
   },
 });
 

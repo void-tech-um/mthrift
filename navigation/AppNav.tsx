@@ -4,7 +4,6 @@ import ProfilePage from "../screens/ProfilePage";
 import HomePage from "../screens/HomePage";
 import { Text } from "react-native";
 
-
 /* Placeholders for the screens */
 const Chat = () => {
   return <Text>Chat</Text>;

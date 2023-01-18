@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, Dimensions } from "react-native";
 import { useAuth } from "../App";
 import { useUserContext } from "../App";
 interface SignUpProps {
@@ -36,72 +36,142 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Sign up here!</Text>
-      <Text>Enter Full Name</Text>
-      <TextInput
-        placeholder="Fullname"
-        value={userInfo.fullName}
-        onChangeText={(val) =>
-          setUserInfo((prev) => {
-            return { ...prev, fullName: val };
-          })
-        }
-      />
-      <Text>Enter Username</Text>
-      <TextInput
-        placeholder="Username"
-        value={userInfo.username}
-        onChangeText={(val) =>
-          setUserInfo((prev) => {
-            return { ...prev, username: val };
-          })
-        }
-      />
-      <Text>Enter Email</Text>
-      <TextInput
-        placeholder="Email"
-        value={userInfo.email}
-        onChangeText={(val) =>
-          setUserInfo((prev) => {
-            return { ...prev, email: val };
-          })
-        }
-      />
-      <Text>Enter Password</Text>
-      <TextInput
-        placeholder="Password"
-        value={userInfo.password}
-        onChangeText={(val) =>
-          setUserInfo((prev) => {
-            return { ...prev, password: val };
-          })
-        }
-      />
-      <Text>Enter Phone Number</Text>
-      <TextInput
-        placeholder="Phone Number"
-        value={userInfo.phoneNumber}
-        onChangeText={(val) =>
-          setUserInfo((prev) => {
-            return { ...prev, phoneNumber: val };
-          })
-        }
-      />
+        
+      <View style={styles.userInputContainer}>
+        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Full Name</Text>
+        <TextInput
+          style={styles.inputTextBox}
+          placeholder="Fullname"
+          value={userInfo.fullName}
+          onChangeText={(val) =>
+            setUserInfo((prev) => {
+              return { ...prev, fullName: val };
+            })
+          }
+        />
+      </View> 
 
-      <Text>Confirm Password</Text>
-      <TextInput
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-      />
-      <TouchableOpacity onPress={handleSignUp}>
-        <Text>Sign Up</Text>
+      <View style={styles.userInputContainer}>
+          <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Username</Text>
+          <TextInput
+            style={styles.inputTextBox}
+            placeholder="Username"
+            value={userInfo.username}
+            onChangeText={(val) =>
+              setUserInfo((prev) => {
+                return { ...prev, username: val };
+              })
+            }
+          />
+      </View>
+      
+    
+      <View style={styles.userInputContainer}>
+        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Email</Text>
+        <TextInput
+        style={styles.inputTextBox}
+          placeholder="Email"
+          value={userInfo.email}
+          onChangeText={(val) =>
+            setUserInfo((prev) => {
+              return { ...prev, email: val };
+            })
+          }
+        />
+      </View>       
+      
+      <View style={styles.userInputContainer}>
+        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Phone </Text>
+        <TextInput
+          style={styles.inputTextBox}
+          placeholder="Phone Number"
+          value={userInfo.phoneNumber}
+          onChangeText={(val) =>
+            setUserInfo((prev) => {
+              return { ...prev, phoneNumber: val };
+            })
+          }
+        />
+      </View>
+
+      <View style={styles.userInputContainer}>
+        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Password</Text>
+        <TextInput
+          style={styles.inputTextBox}
+          placeholder="Password"
+          value={userInfo.password}
+          onChangeText={(val) =>
+            setUserInfo((prev) => {
+              return { ...prev, password: val };
+            })
+        }
+        />
+      </View>
+
+      <View style={styles.userInputContainer}>
+        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Confirm Password</Text>
+        <TextInput
+          style={styles.inputTextBox}
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+        />
+      </View> 
+
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+        <Text style={{ color: "#FFFFFF", fontWeight: "600" }}>Sign Up</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text>Already have an account?</Text>
-      </TouchableOpacity>
-    </View>
+    </View>    
   );
 };
+
+const styles = StyleSheet.create({
+  inputTextBox: {
+    height: 40,
+    width: 200,
+    backgroundColor: "#D9D9D9",
+    borderRadius: 20,
+  },
+  container: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFFFFF",
+    height: Dimensions.get("window").height,
+    width: Dimensions.get("window").width,
+  },
+  userInputContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: 300,
+    padding: 10,
+    margin: 5,
+  },
+  button: {
+    alignItems: "center",
+    backgroundColor: "#00274C",
+    padding: 10,
+    borderRadius: 50,
+    width: 150,
+    margin: 10,
+  },
+  button2: {
+    alignItems: "center",
+    backgroundColor: "#00274C",
+    padding: 10,
+    borderRadius: 50,
+    width: 200,
+    margin: 10,
+  },
+
+  buttonContainer: {
+    alignItems: "center",
+    padding: 40,
+  },
+});
+
 export default SignUpPage;

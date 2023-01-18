@@ -40,13 +40,13 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
 
-      <Image source={logo} style={{ width: 10, height: 10 }} />
+      <Image source={logo} style={{ width: 200, height: 60 }} />
 
       <View style={styles.userInputContainer}>
         <Text
           style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}
         >
-          Email:
+          Email
         </Text>
         <TextInput
           style={{
@@ -62,7 +62,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
         <Text
           style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}
         >
-          Password:
+          Password
         </Text>
         <TextInput
           style={{
