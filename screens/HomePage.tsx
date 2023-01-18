@@ -11,8 +11,12 @@ import {
   Dimensions,
 } from "react-native";
 
+type Props = {
+  navigation: any;
+}
+
 // display the logo in top left corner with filter button right next to it with item card in the center
-const HomePage = () => {
+const HomePage = ({ navigation }: Props) =>{
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -22,7 +26,9 @@ const HomePage = () => {
       </TouchableOpacity>
       </View>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <ItemCard style={styles.cardStyle} />
+        <TouchableOpacity onPress={() => navigation.navigate("Item")}>
+          <ItemCard style={styles.cardStyle} />
+        </TouchableOpacity>
         <ItemCard />
         <ItemCard />
         <ItemCard />
@@ -54,6 +60,7 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 10,
     marginTop: 5,
+    marginRight: 80,
   },
   logo: {
     width: 75,
