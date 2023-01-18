@@ -9,6 +9,7 @@ import Authenticate from "./navigation/Authenticate";
 import AppNav from "./navigation/AppNav";
 import React from "react";
 import axios from "axios";
+import ItemPage from "./screens/ItemPage";
 
 interface IAuthContext {
   signIn: (data: any) => Promise<void>;
