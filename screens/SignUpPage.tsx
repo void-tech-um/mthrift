@@ -120,11 +120,9 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
         />
       </View> 
 
-      <View style={styles.button}>
-        <TouchableOpacity onPress={handleSignUp}>
-          <Text style={{ color: "#FFFFFF", fontWeight: "600" }}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+        <Text style={{ color: "#FFFFFF", fontWeight: "600" }}>Sign Up</Text>
+      </TouchableOpacity>
     </View>    
   );
 };

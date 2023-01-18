@@ -21,7 +21,7 @@ const HomePage = () => {
         <Text style={styles.buttonText}>Filter</Text>
       </TouchableOpacity>
       </View>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <ItemCard style={styles.cardStyle} />
         <ItemCard />
         <ItemCard />
