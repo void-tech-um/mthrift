@@ -1,6 +1,7 @@
 import * as React from "react";
 import logo from "../assets/MTHRIFT.png";
 import ItemCard from "../components/ItemCard";
+
 import {
   StyleSheet,
   ScrollView,
@@ -9,6 +10,7 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  Platform
 } from "react-native";
 
 type Props = {
@@ -20,10 +22,10 @@ const HomePage = ({ navigation }: Props) =>{
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-      <Image source={logo} style={styles.logo} />
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>Filter</Text>
-      </TouchableOpacity>
+        <Image source={logo} style={styles.logo} />
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Filter</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <TouchableOpacity onPress={() => navigation.navigate("Item")}>
@@ -40,27 +42,44 @@ const HomePage = ({ navigation }: Props) =>{
 
 const styles = StyleSheet.create({
   container: {
-    disaplay: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingLeft: "3%",
-    paddingRight: "3%",
-    height: Dimensions.get("window").height,
-    // width: Dimensions.get("window").width,
-    width: "100%",
+    flex: 1,
+    ...Platform.select({
+      ios: {
+        backgroundColor: 'white',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: "3%",
+        paddingRight: "3%",
+      },
+      android: {
+        backgroundColor: 'white',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingLeft: "3%",
+        paddingRight: "3%",
+      },
+    }),
   },
   cardStyle: {
     width: "100%",
     height: 200,
   },
   topContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    width: "100%",
-    padding: 10,
-    marginTop: 5,
-    marginRight: 80,
+    ...Platform.select({
+      ios: {
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%",
+      },
+      android: {
+        flexDirection: "row",
+        alignItems: "center",
+        width: "100%",
+      },
+    })
+    
   },
   logo: {
     width: 75,

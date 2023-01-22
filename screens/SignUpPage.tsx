@@ -37,7 +37,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
 
   return (
     <View style={styles.container}>
-      <Text>Sign up here!</Text>
+      <Text style={{ fontWeight: "600", fontSize: 20 }}>Sign up here!</Text>
         
       <View style={styles.userInputContainer}>
         <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Full Name</Text>
@@ -111,7 +111,7 @@ const SignUpPage = ({ navigation }: SignUpProps) => {
       </View>
 
       <View style={styles.userInputContainer}>
-        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Confirm Password</Text>
+        <Text style={{ color: "black", fontWeight: "600", writingDirection: "rtl" }}>Confirm{"\n"}Password</Text>
         <TextInput
           style={styles.inputTextBox}
           placeholder="Confirm Password"
