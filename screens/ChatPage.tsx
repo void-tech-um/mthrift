@@ -1,6 +1,7 @@
 import * as React from "react";
 import logo from "../assets/MTHRIFT.png";
 import ChatCard from "../components/ChatCard";
+import { useNavigation } from "@react-navigation/native";
 import {
   StyleSheet,
   ScrollView,
@@ -11,12 +12,9 @@ import {
   Dimensions,
 } from "react-native";
 
-type ChatProps = {
-  navigation: any;
-}
-
 // display the logo in top left corner with filter button right next to it with item card in the center
-const ChatPage = ({ navigation }: ChatProps) =>{
+const ChatPage = () =>{
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -24,11 +22,11 @@ const ChatPage = ({ navigation }: ChatProps) =>{
       </View>
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <TouchableOpacity onPress={() => navigation.navigate("Chat")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Chat" as never, {} as never)}>
           <ChatCard style={styles.cardStyle} />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => navigation.navigate("Chat")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Chat" as never, {} as never)}>
           <ChatCard style={styles.cardStyle} />
         </TouchableOpacity>
 

@@ -3,6 +3,7 @@ import chatIcon from '../assets/chatIcon.png';
 import likeIcon from '../assets/likeIcon.png';
 import dislikeIcon from '../assets/dislikeIcon.png';
 import gradient from '../assets/gradient.jpeg';
+import { useNavigation } from '@react-navigation/native';
 import {
     StyleSheet,
     Text,
@@ -18,13 +19,13 @@ import {
     navigation: any;
   }
 
-const ItemPage = ({navigation}: ItemPageProps) => {
-
+const ItemPage = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <ImageBackground source={gradient} style={styles.container}>
                 <View style={styles.firstRow}>    
-                <TouchableOpacity onPress={() => navigation.navigate("Tabs")} style={styles.xIcon}>
+                <TouchableOpacity onPress={() => navigation.navigate("Tabs" as never, {} as never)} style={styles.xIcon}>
                     <Image source={ dislikeIcon } />
                 </TouchableOpacity>            
                     <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} style={{display: 'flex'}}>
