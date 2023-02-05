@@ -14,13 +14,20 @@ import {
     ImageBackground
   } from "react-native";
 
-const ItemPage = () => {
+  interface ItemPageProps {
+    navigation: any;
+  }
+
+const ItemPage = ({navigation}: ItemPageProps) => {
 
     return (
         <View style={styles.container}>
             <ImageBackground source={gradient} style={styles.container}>
-                <View style={styles.firstRow}>
-                    <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+                <View style={styles.firstRow}>    
+                <TouchableOpacity onPress={() => navigation.navigate("Tabs")} style={styles.xIcon}>
+                    <Image source={ dislikeIcon } />
+                </TouchableOpacity>            
+                    <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false} style={{display: 'flex'}}>
                         <Image source={modelShirt} style={styles.scrollImg}></Image>
                         <Image source={modelShirt} style={styles.scrollImg}></Image>
                     </ScrollView>
@@ -49,13 +56,22 @@ const styles = StyleSheet.create({
         height: 70,
         display: 'flex',
     },
+    xIcon: {
+        position: 'absolute',
+        paddingTop: 20,
+        marginLeft: 20,
+        zIndex: 1,
+
+    },
     firstRow: {
         width: '100%',
         height: '70%',
+        zIndex: 0,
     },
     scrollImg: {
         padding: '7%',
-        margin: 10,
+        margin: 0,
+        width: Dimensions.get('window').width,
     },
     row: {
         width: '70%',

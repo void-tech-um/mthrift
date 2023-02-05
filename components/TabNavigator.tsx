@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
@@ -62,14 +62,9 @@ function TabNavigator({ children }: ITabNavigatorProps) {
           backgroundColor: "#fff",
         },
         tabBarStyle: {
-          borderRadius: 50,
           position: "absolute",
-          left: "10%",
-          right: "10%",
-          bottom: "5%",
-          paddingHorizontal: 30,
           paddingBottom: 0,
-          // shadow properties
+          //Shadow properties
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
