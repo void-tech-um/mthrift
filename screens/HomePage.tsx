@@ -1,6 +1,8 @@
 import * as React from "react";
 import logo from "../assets/MTHRIFT.png";
 import ItemCard from "../components/ItemCard";
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import {
   StyleSheet,
   ScrollView,
@@ -10,13 +12,16 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import ItemPage from "./ItemPage";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 type Props = {
   navigation: any;
 }
 
 // display the logo in top left corner with filter button right next to it with item card in the center
-const HomePage = ({ navigation }: Props) =>{
+const HomePage = () =>{
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
@@ -26,7 +31,7 @@ const HomePage = ({ navigation }: Props) =>{
       </TouchableOpacity>
       </View>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <TouchableOpacity onPress={() => navigation.navigate("Item")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Item" as never, {} as never)}>
           <ItemCard style={styles.cardStyle} />
         </TouchableOpacity>
         <ItemCard />

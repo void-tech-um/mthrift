@@ -41,7 +41,6 @@ function AppNav() {
       <Stack.Screen name="Tabs" options={{ headerShown:  false}} component={TabNav} />
       <Stack.Screen name="Item" options={{ headerShown:  false}} component={ItemPage} />
     </Stack.Navigator>
-
   );
 }
 
