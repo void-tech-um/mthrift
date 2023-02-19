@@ -1,5 +1,9 @@
 import * as React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import chatIcon from '../assets/chatIcon.png';
+import likeIcon from '../assets/likeIcon.png';
+import dislikeIcon from '../assets/dislikeIcon.png';
+import image from '../assets/modelShirt.jpg';
+import { ImageBackground, StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
 interface ItemInfo {
   name: string;
@@ -16,47 +20,50 @@ const ItemCard = (props: any) => {
   });
   return (
     <View style={styles.container}>
+      
       <View style={{
         display: "flex",
         flexDirection: "column",
         marginTop: "auto",
         marginBottom: 20,
-        marginLeft: 10
-      }}>
+        marginLeft: 0,
+        }}>
+        
         <Text style={styles.name}>{"Michigan Jersey"}</Text>
-        {/* <Text style={styles.header}>Price: </Text> */}
+        
         
         <View style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      
-      }}>
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          marginTop: 10,
+          }}>
  
-        {/* <Text style={styles.header}>Price: </Text> */}
-        <Text style={{
-           fontSize: 25,
-           color: "white",
-           marginRight: 15
-        }}>{"Size:YL"}</Text>
-        <Text style={styles.price}>{"$30"}</Text>
-      
-      </View>
+  
+          <Text style={styles.size}>{"Size: YL"}</Text>
+          
+          <View style={styles.priceContainer}>
+            <Text style={styles.price}>{"$30"}</Text>
+          </View>
+
+
+
+        </View>
       
       </View>
 
-      {<View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.likeButton}>
-          <Text style={styles.buttonText}>Like</Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button}>
+          <Image source={ likeIcon } style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.chatButton}>
-          <Text style={styles.buttonText}>Chat</Text>
+        <TouchableOpacity style={styles.button}>
+          <Image source={ chatIcon } style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.dislikeButton}>
-          <Text style={styles.buttonText}>Dislike</Text>
+        <TouchableOpacity style={styles.button}>
+          <Image source={ dislikeIcon } style={styles.icon} />
         </TouchableOpacity>
-      </View> }
-      {<Text style={styles.header}>Name: </Text> }
+      </View> 
+    
     </View>
   );
 };
@@ -67,26 +74,33 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#00274C",
     width: "100%",
-    height: 550,
+    height: 600,
     borderRadius: 20,
     marginTop: 20,
     paddingLeft: 20,
     paddingRight: 20,
   },
-  header: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
-  },
   name: {
-    fontSize: 16,
+    fontSize: 25,
     color: "white",
+    fontWeight: 'bold',
+  },
+  size: {
+    fontSize: 20,
+    color: "white",
+    marginRight: 20,
+    fontWeight: 'bold',
+  },
+  priceContainer: {
+    backgroundColor: "#C6E7F8",
+    borderRadius: 10,
+    fontWeight: 'bold',
+    
   },
   price: {
-    fontSize: 30,
+    fontSize: 20,
     color: "black",
-    backgroundColor: "lightblue",
-    
+    fontWeight: 'bold',
     padding: 5
   },
   buttonContainer: {
@@ -94,38 +108,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-    width: 65,
-    height: 60,
+    width: 55,
+    height: 250,
     borderRadius: 100,
-    marginTop: 20,
-    marginLeft: 300,
+    marginTop: 340,
+    marginLeft: 40,
   },
-  likeButton: {
+  button: {
+    display: 'flex',
     alignItems: "center",
-    backgroundColor: "#35C27E",
     padding: 10,
     borderRadius: 100,
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 10,
   },
-  chatButton: {
-    alignItems: "center",
-    backgroundColor: "#FFCB05",
-    padding: 10,
-    borderRadius: 100,
-    marginTop: 20,
+  icon: {
+    width: 50,
+    height: 50,
+    display: 'flex',
   },
-  dislikeButton: {
-    alignItems: "center",
-    backgroundColor: "#FF9494",
-    padding: 10,
-    borderRadius: 100,
-    marginTop: 20,
-  },
-  buttonText: {
-    fontSize: 10,
-    fontWeight: "bold",
-    color: "white",
-  },
+  
 });
 
 export default ItemCard;

@@ -4,13 +4,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProfilePage from "../screens/ProfilePage";
 import HomePage from "../screens/HomePage";
 import ItemPage from "../screens/ItemPage";
+import ChatPage from "../screens/ChatPage";
+
 import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
 /* Placeholders for the screens */
 const Chat = () => {
-  return <Text>Chat</Text>;
+  return ChatPage;
 };
 /* end placeholders */
 
@@ -29,7 +31,7 @@ function TabNav() {
   return (
   <TabNavigator>
     <NavScreen name="Home" options={{ headerShown:  false}} component={HomePage} />
-    <NavScreen name="Chat" options={{ headerShown:  false}} component={Chat} />
+    <NavScreen name="Chat" options={{ headerShown:  false}} component={ChatPage} />
     <NavScreen name="Profile" options={{ headerShown:  false}} component={ProfilePage} />
   </TabNavigator>
 );

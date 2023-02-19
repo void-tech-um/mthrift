@@ -4,7 +4,8 @@ import { UserContext } from "../App";
 import { useAuth } from "../App";
 //import the context
 import { useUserContext } from "../App";
-import { StyleSheet, Text, View, Pressable, Alert, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Pressable, Alert, TouchableOpacity, Image } from "react-native";
+import dislikeIcon from '../assets/dislikeIcon.png';
 
 
 const ProfilePage = () => {
@@ -34,13 +35,16 @@ const ProfilePage = () => {
         <TouchableOpacity onPress={handleLogOut}>
           <Text style={styles.logoutButton}>Logout</Text>
         </TouchableOpacity>
-        <Text style={styles.fullName}>{info.fullName}</Text>
-        <Text style={styles.username}>@{info.username}</Text>
-        <Text style={styles.phoneNumber}>&#128222;{info.phoneNumber}</Text>
+        <View style={styles.bioInfo}>
+          <Text style={styles.fullName}>John Ram{info.fullName}</Text>
+          <Text style={styles.username}> ✉️ jram@umich.edu{info.username}</Text>
+          <Text style={styles.phoneNumber}>&#128222; (758)-607-5063{info.phoneNumber}</Text>
+        </View>
+        <Image source={ dislikeIcon } style={styles.profilePhoto} />
         <View style={styles.fixToText}>
           <Pressable style={styles.sellingButton} onPress={onSelling}>
             <Text style={styles.text}>Selling</Text>
-          </Pressable>
+          </Pressable> 
           <Pressable style={styles.wishlistButton} onPress={onWishlist}>
             <Text style={styles.text}>Wishlist</Text>
           </Pressable>
@@ -53,9 +57,6 @@ const ProfilePage = () => {
       </View>
     </View>
   );
-
- 
-  // 
 };
 
 const styles = StyleSheet.create({
@@ -72,16 +73,23 @@ const styles = StyleSheet.create({
   fullName: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#001c9b",
+    color: "#003399",
+    textAlign: "right", 
+    marginRight: 20, 
   },
   username: {
     fontSize: 15,
     fontWeight: "bold",
     marginBottom: 10,
     color: "#616161",
+    textAlign: "right", 
+    marginRight: 20, 
+    
   },
   phoneNumber: {
-    fontSize: 20,
+    fontSize: 15,
+    textAlign: "right",
+    marginRight: 20, 
   },
   fixToText: {
     marginTop: 60,
@@ -96,7 +104,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     elevation: 3,
-    backgroundColor: "black",
+    backgroundColor: "#003399",
     borderColor: "#fd0000",
     width: "50%",
   },
@@ -108,7 +116,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     elevation: 3,
-    backgroundColor: "grey",
+    backgroundColor: "#e6e6e6",
     width: "50%",
   },
   text: {
@@ -131,6 +139,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginRight: 20,
   },
+  bioInfo: {
+    textAlign: "right",  
+  },
+  profilePhoto : {
+    textAlign: "right",  
+    paddingBottom: 50,
+    borderRadius: 20,
+  },
+  
 });
 
 export default ProfilePage;

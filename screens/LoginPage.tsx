@@ -40,7 +40,7 @@ const LoginPage = ({ navigation }: LoginPageProps) => {
     <View style={styles.container}>
       <LoginError errorCheck={errorCheck} />
 
-      <Image source={logo} style={{ width: 200, height: 60 }} />
+      <Image source={logo} style={{ width: 100, height: 60 }} />
 
       <View style={styles.userInputContainer}>
         <Text
