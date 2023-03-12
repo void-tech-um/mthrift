@@ -62,10 +62,11 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     width: "100%",
     padding: 10,
-    marginTop: 5,
-    marginRight: 80,
+    marginTop: 5
+  
   },
   logo: {
     width: 75,
